@@ -1,0 +1,30 @@
+{
+  "dataGoKrKey": "여기에_공공데이터포털_일반인증키(Decoding)",
+  "kopisKey": "",
+  "kobisKey": "",
+  "githubToken": "",
+  "discordWebhookUrl": "https://discord.com/api/webhooks/여기에_웹훅_주소",
+
+  "maxPrice": 20000,
+  "includeUnknownPrice": true,
+  "includePaidUnknownPrice": false,
+  "endingSoonDays": 7,
+  "lookaheadDays": 30,
+  "maxItemsPerRun": 0,
+  "runOncePerDay": true,
+  "openCalendarOnLogon": true,
+  "cultureInfoRealms": ["전시"],
+  "popupRegions": ["부산"],
+  "holidays": true,
+
+  "sources": {
+    "busanExhibit": true,
+    "busanEtc": true,
+    "busanCultureDay": true,
+    "cultureInfo": true,
+    "tourFestival": true,
+    "kopis": true,
+    "movies": true,
+    "popups": true
+  }
+}
