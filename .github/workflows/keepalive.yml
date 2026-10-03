@@ -1,0 +1,19 @@
+# 공개 저장소는 60일간 활동이 없으면 예약 실행이 자동으로 꺼진다 → 한 달에 한 번 작은 커밋으로 살려 둠
+name: keepalive
+on:
+  schedule:
+    - cron: '23 3 1 * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          date -u +%Y-%m-%dT%H:%M:%SZ > .github/heartbeat
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/heartbeat
+          git commit -m "keepalive" && git push
