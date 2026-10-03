@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>부산 문화 캘린더</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="top">
+  <div class="bar">
+    <h1 id="monthLabel" aria-live="polite">&nbsp;</h1>
+    <div class="actions">
+      <input id="search" type="search" placeholder="제목·장소 검색" autocomplete="off">
+      <button id="btnBrowse" class="pill" title="예정된 항목 전체를 목록으로 보고 미리 거르기">☰ 전체 보기</button>
+      <button id="btnAdd" class="pill" title="팝업스토어·개인 일정 직접 추가">+ 일정</button>
+      <button id="btnToday" class="pill" title="오늘로 이동 (T)">오늘</button>
+      <button id="btnRefresh" class="icon" title="지금 새로 불러오기" aria-label="새로고침">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="filters">
+    <div id="chips" class="chips" role="group" aria-label="분류 필터"></div>
+    <label class="toggle fav"><input type="checkbox" id="favOnly"><span>★ 즐겨찾기만</span></label>
+    <label class="toggle"><input type="checkbox" id="freeOnly"><span>무료만</span></label>
+  </div>
+  <div id="status" class="status"></div>
+  <div class="weekdays" aria-hidden="true">
+    <span class="sun">일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span class="sat">토</span>
+  </div>
+</header>
+
+<main id="scroller" tabindex="-1">
+  <div id="weeks"></div>
+</main>
+
+<div id="empty" class="empty" hidden>
+  <p>아직 캘린더 데이터가 없습니다.</p>
+  <button id="btnFirstLoad" class="pill primary">지금 불러오기</button>
+  <small>처음 불러오기는 1~2분쯤 걸립니다.</small>
+</div>
+
+<section id="browse" class="browse" hidden aria-label="전체 보기">
+  <div class="bhead">
+    <div class="bar">
+      <h2>예정된 전체 항목</h2>
+      <div class="actions">
+        <input id="bSearch" type="search" placeholder="제목·장소·장르 검색" autocomplete="off">
+        <button id="bClose" class="close" aria-label="닫기">✕</button>
+      </div>
+    </div>
+    <div class="sub bhint">☆ 누르면 캘린더에 표시(영화는 ★ 한 것만 캘린더에 나옵니다) · ✕ 누르면 캘린더와 디스코드에서 제외</div>
+    <div id="btabs" class="btabs" role="group" aria-label="분류"></div>
+    <div class="btools">
+      <label class="bselall"><input type="checkbox" id="bSelAll"><span>모두 선택</span></label>
+      <span id="bSummary" class="sub"></span>
+      <span class="spacer"></span>
+      <label class="toggle fav"><input type="checkbox" id="bFavOnly"><span>★만</span></label>
+      <label class="toggle"><input type="checkbox" id="bShowHidden"><span>숨긴 항목 보기 <span id="bHiddenCount"></span></span></label>
+    </div>
+    <div id="bbulk" class="bbulk" hidden>
+      <b id="bSelCount"></b>
+      <button class="pill small" data-bulk="fav">★ 즐겨찾기</button>
+      <button class="pill small" data-bulk="unfav">☆ 해제</button>
+      <button class="pill small danger" data-bulk="hide">✕ 숨기기</button>
+      <button class="pill small" data-bulk="unhide">↺ 다시 보기</button>
+      <button class="pill small" data-bulk="clear">선택 해제</button>
+    </div>
+  </div>
+  <div id="blist" class="blist"></div>
+</section>
+
+<div id="backdrop" class="backdrop" hidden></div>
+<section id="sheet" class="sheet" aria-modal="true" role="dialog" hidden>
+  <div class="grip" aria-hidden="true"></div>
+  <button id="sheetClose" class="close" aria-label="닫기">✕</button>
+  <div id="sheetBody"></div>
+</section>
+
+<div id="toast" class="toast" hidden></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
